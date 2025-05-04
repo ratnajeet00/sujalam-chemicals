@@ -1,3 +1,3 @@
-const API_URL = "https://sujalam-chem--ratnajeet00.repl.co/";
+const API_URL = "https://vulture-on-treefrog.ngrok-free.app/";
 
 export default API_URL;

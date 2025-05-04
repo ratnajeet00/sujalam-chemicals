@@ -1,36 +1,44 @@
-import { useRootNavigationState, useRouter, useSegments } from "expo-router";
-import React from "react";
-import { Text, View } from "react-native";
+import { useRouter } from "expo-router";
+import { useEffect } from "react";
+import { Text, View, StyleSheet } from "react-native";
 import { AuthStore } from "../store";
+import COLORS from "../constants/colors";
 
 export default function Index() {
-  const segments = useSegments();
   const router = useRouter();
   const { isLoggedIn } = AuthStore.useState((s) => s);
-  const navigationState = useRootNavigationState();
 
-  React.useEffect(() => {
-    if (!navigationState?.key) return;
+  useEffect(() => {
+    // Simple redirect based on auth state without checking connectivity
+    const redirect = setTimeout(() => {
+      if (isLoggedIn) {
+        router.replace("/(pages)/home");
+      } else {
+        router.replace("/login");
+      }
+    }, 100);
 
-    const inAuthGroup = segments[0] === "(auth)";
+    return () => clearTimeout(redirect);
+  }, [isLoggedIn, router]);
 
-    if (
-      // If the user is not signed in and the initial segment is not in the auth group.
-      !isLoggedIn &&
-      !inAuthGroup
-    ) {
-      router.replace("/login");
-    } else if (isLoggedIn) {
-      router.replace("(pages)/home");
-    }
-  }, [isLoggedIn, segments, navigationState?.key]);
-
-  if (!navigationState?.key)
-    return (
-      <View>
-        <Text>
-          If you see this for more than a few seconds, something is wrong.
-        </Text>
-      </View>
-    );
+  // Simple loading screen
+  return (
+    <View style={styles.container}>
+      <Text style={styles.loadingText}>Loading...</Text>
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.bg,
+    padding: 20,
+  },
+  loadingText: {
+    color: 'white',
+    fontSize: 18,
+  }
+});

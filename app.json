@@ -24,6 +24,9 @@
     },
     "ios": {
       "bundleIdentifier": "com.ratnajeet00.SujalamChemicals"
-    }
+    },
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
