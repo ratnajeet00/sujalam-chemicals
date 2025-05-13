@@ -104,7 +104,7 @@ export default function AddOrder() {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 15,
+    margin: 10,
   },
   heading: {
     fontSize: 20,
@@ -124,9 +124,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   backButton: {
-    marginVertical: 15,
+    marginVertical: 5, // reduced from 15
     backgroundColor: COLORS.primary,
-    padding: 10,
+    padding: 8, // reduced from 10
     borderRadius: 5,
     width: width * 0.2,
     height: height * 0.06,
@@ -134,9 +134,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   createButton: {
-    marginVertical: 15,
+    marginVertical: 5, // reduced from 15
     backgroundColor: COLORS.primary,
-    padding: 10,
+    padding: 8, // reduced from 10
     borderRadius: 5,
     width: width * 0.7,
     alignItems: "center",
