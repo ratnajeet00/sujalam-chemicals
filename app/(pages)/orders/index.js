@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, View, SafeAreaView } from "react-native";
 import API_URL from "../../../API/API";
 import FilteredSearch from "../../../components/FilteredSearch/FilteredSearch";
 import AddOrder from "../../../components/Orders/AddOrder";
@@ -97,14 +97,20 @@ export default function Orders() {
   };
   
   return (
-    <View style={{ margin: 15, paddingBottom: 40 }}>
-      <FilteredSearch
-        placeholder="Order"
-        filterOptions={ordersFilterOptions}
-        onSearch={handleSearch}
-      />
-      <AddOrder />
-      <ScrollView>{renderOrderCards()}</ScrollView>
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ 
+        flex: 1,
+        margin: 10, 
+        paddingBottom: 80, 
+      }}>
+        <AddOrder />
+        <FilteredSearch
+          placeholder="Order"
+          filterOptions={ordersFilterOptions}
+          onSearch={handleSearch}
+        />
+        <ScrollView>{renderOrderCards()}</ScrollView>
+      </View>
+    </SafeAreaView>
   );
 }

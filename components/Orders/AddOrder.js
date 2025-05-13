@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     zIndex: 1,
     width: 60,
     height: 60,
-    top: height * 0.75,
-    left: width * 0.75,
+    bottom: 20,
+    right: 10,
   },
 });
 
